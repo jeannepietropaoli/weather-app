@@ -6,15 +6,12 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 15px;
-    background-image: url('./img/hot.svg');
     background-size: cover;
-    overflow: hidden;
     font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
     position: relative;
 }
-
 
 /* current Weather data */
 
@@ -31,7 +28,6 @@ body {
     flex-grow: 1;
     padding-top: 10vh;
     align-items: flex-start;
-
 }
 
 #currentWeatherInfos > * {
@@ -126,16 +122,16 @@ body {
 }
 
 /* forecast data */
+
 #forecastHeader {
     color: white;
     align-self: center;
 }
 
-
 #forecastContainer {
     width: fit-content;
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     background-color: rgba(210, 215, 211, 0);
     gap: 160px;
@@ -149,6 +145,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 18px;
     padding: 15px;
     cursor: pointer;
@@ -170,10 +167,8 @@ body {
 }
 
 .day {
-    text-align: 4enter;
+    text-align: center;
 }
-
-
 
 .forecastWeatherIcon {
     height: 4vh;
@@ -217,7 +212,7 @@ header > *,
 #githubLogo:hover{
     transform: rotate(-360deg);
     bottom: 19px;
-    content: url('./img/iconGitOrange.jpg');
+    content: url('./img/gitLogo/iconGitOrange.jpg');
 }
 
 #githubLogo,
@@ -225,6 +220,8 @@ header > *,
 #unitC {
     cursor: pointer;
 }
+
+/* units */
 
 #switchUnits {
     display: flex;
@@ -234,6 +231,28 @@ header > *,
 #unitC:hover {
     font-size: 1.4em;
     color: #bd512b;
+}
+
+#switchUnitsText {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    padding-left: 15px;
+}
+
+#unitsBox {
+    display: flex;
+    justify-content: center;
+}
+
+#unitsBox > * {
+    margin: 0;
+}
+
+#switchUnitsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
 }
 
 /* location */
@@ -266,27 +285,7 @@ header > *,
     margin: 0;
 }
 
-#switchUnitsText {
-    writing-mode: vertical-lr;
-    text-orientation: upright;
-    padding-left: 15px;
-}
-
-#unitsBox {
-    display: flex;
-    justify-content: center;
-}
-
-#unitsBox > * {
-    margin: 0;
-}
-
-#switchUnitsContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-}
+/* loading */
 
 #loadingGif {
     height: 5em;
