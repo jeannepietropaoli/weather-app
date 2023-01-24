@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;0,900;1,100;1,200;1,300;1,400&display=swap');
+
+body {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 15px;
+    background-image: url('./img/cold.svg');
+    background-size: cover;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* current Weather data */
+
+#currentWeatherContainer {
+    display: flex;
+    align-items: center;
+    gap: 45px;
+}
+
+#currentData {
+    display: flex;
+    padding: 0 max(12vw, 20px);
+    justify-content: space-between;
+    flex-grow: 1;
+    padding-top: 10vh;
+    align-items: flex-start;
+
+}
+
+#currentWeatherInfos > * {
+    margin: 0;
+}
+
+#currentWeatherInfos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.temperature {
+    font-size: 4em;
+}
+
+#currentWeatherIcon {
+    height: 12vh;
+    width: 12vh;
+}
+
+#currentWeatherInfos > * {
+    margin: 0;
+}
+
+/* search city input */
+
+#searchCityInput {
+    width: clamp(15rem, 15vw, 35rem);
+    background: none;
+    border: none;
+    color: black;
+}
+
+#searchCityInput::placeholder {
+    color: black;
+}
+
+#searchCityInput:focus {
+    outline: none;
+}
+
+#submitCityBtn {
+    height: 0.85rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.searchBox {
+    display: flex;
+    align-content: center;
+    margin: 10px;
+    border-bottom: 1px solid black;
+    width: fit-content;
+    justify-self: end;
+}
+
+.invalidValueShaking {
+    animation: invalidShaking 0.2s ease-in-out 0s 2;
+}
+
+@keyframes invalidShaking {
+    0% {
+        margin-left: 0rem;
+      }
+      25% {
+        margin-left: 0.5rem;
+      }
+      75% {
+        margin-left: -0.5rem;
+      }
+      100% {
+        margin-left: 0rem;
+      }
+}
+
+/* forecast data */
+#forecastHeader {
+    color: white;
+    align-self: center;
+}
+
+
+#forecastContainer {
+    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-items: center;
+    background-color: rgba(210, 215, 211, 0);
+    gap: 160px;
+    padding: 15px 100px;
+    color: white;
+    border-top: 2px solid white;
+    align-self: center;
+}
+
+#forecastContainer > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.day > .date {
+    color: rgba(250, 250, 250, 0.8);
+    font-size: 0.8em;
+}
+
+#forecastContainer > * > *,
+.day > * {
+    margin: 0;
+}
+
+.day {
+    text-align: center;
+}
+
+
+
+.forecastWeatherIcon {
+    height: 4vh;
+    width: 4vh;
+}
+
+/* header */
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header > *,
+#switchUnits > * {
+    margin: 0;
+}
+
+#githubLogo {
+    border-radius: 50%;
+    height: 40px;
+}
+
+#githubLogo,
+#unitF,
+#unitC {
+    cursor: pointer;
+}
+
+#switchUnits {
+    display: flex;
+}
+
+/* location */
+
+#location {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#currentLocation {
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    gap: 10px;
+}
+
+#locationLogo {
+    height: 10vh;
+    width: auto;
+}
+
+#locationInfos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#locationInfos > * {
+    margin: 0;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="index_aasync_await.js"></script>
+</head>
+<body>
+    <header>
+        <h3 id="appName">Weatheri</h3>
+        <div id="switchUnits">
+            <h3 id="unitF">°F</h3>
+            <h3>|</h3>
+            <h3 id="unitC">°C</h3>
+        </div>
+        <img src="./img/iconGit.jpg" id="githubLogo" alt="">
+    </header>
+
+    <div id="currentData">
+        <div id="currentWeatherContainer">
+            <img id="currentWeatherIcon" src="./img/day/116.png" alt="">
+            <div id="currentWeatherInfos">
+                <h4 class="date">Friday 27 october 1:33PM</h4>
+                <h1 class="temperature">20°c</h1>
+                <h4 class="feels-like">Feels like : 18°c</h4>
+                <h1 class="description">Cloudy</h1>
+            </div>
+        </div>
+        <div id="location">
+            <div id="currentLocation">
+                <img id="locationLogo" src="./img/location-logo.png" alt="">
+                <div id="locationInfos">
+                    <h1 id="city">Lyon</h1>
+                    <h3 id="country">France</h3>
+                    <h3 id="region">Rhone alpes</h3>
+                </div>
+            </div>
+            <label for="searchCity" class="searchBox">
+                <input type="text" id="searchCityInput" placeholder="search a city ...">
+                <img src="./img/searchIcon.png" id="submitCityBtn" alt="">
+            </label>
+        </div>
+    </div>
+
+    <h3 id="forecastHeader">3 Day Forecast</h3>
+    <div id="forecastContainer">
+        <div id="+one">
+            <div class="day">
+                <h4 class="dayOfTheWeek">Monday</h4>
+                <p class="date">28 ocotber</p>
+            </div>
+            <h4 class="forecastTemperature">16°c</h4>
+            <img class="forecastWeatherIcon" src="./img/day/116.png" alt="">
+        </div>
+        <div id="+two">
+            <div class="day">
+                <h4 class="dayOfTheWeek">Tuesday</h4>
+                <p class="date">28 ocotber</p>
+            </div>
+            <h4 class="forecastTemperature">16°c</h4>
+            <img class="forecastWeatherIcon" src="./img/day/116.png" alt="">
+        </div>
+        <div id="+three">
+            <div class="day">
+                <h4 class="dayOfTheWeek">Wednesday</h4>
+                <p class="date">28 ocotber</p>
+            </div>
+            <h4 class="forecastTemperature">16°c</h4>
+            <img class="forecastWeatherIcon" src="./img/day/116.png" alt="">
+        </div>
+    </div>
+</body>
+</html>
