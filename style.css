@@ -6,7 +6,7 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 15px;
-    background-image: url('./img/cold.svg');
+    background-image: url('./img/hot.svg');
     background-size: cover;
     overflow: hidden;
     font-family: 'Montserrat', sans-serif;

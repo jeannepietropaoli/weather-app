@@ -4,7 +4,6 @@ const searchCityInput = document.querySelector('#searchCityInput');
 const submitCityBtn = document.querySelector('#submitCityBtn');
 const defaultCity = 'Paris';
 let city = defaultCity;
-let data;
 
 function isSearchCityInputValid() {
     return searchCityInput.value !== '';
@@ -28,22 +27,6 @@ function shakeInput() {
     }, 400)
 }
 
-submitCityBtn.addEventListener('click', () => {
-    if (isSearchCityInputValid) {
-        city = searchCityInput.value;
-        getWeather(city)
-            .then(() => {
-                resetCityInput();
-            })
-            .catch((err) => {
-                shakeInput();
-                console.log(err)
-            })
-    } else {
-        shakeInput();
-    }
-})
-
 async function getWeather(city) {
         const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=b47fa22050904e7e89122000232301&q=${city}&days=3&aqi=no&alerts=no`, {mode : "cors"});
         if (!response.ok) {
@@ -53,20 +36,6 @@ async function getWeather(city) {
             return data
         }
 }
-
-getWeather(city)
-    .catch((err) => console.log(err))
-     .then(response => {
-        data = response;
-        return data;
-    }) 
-    .then(data => {
-        displayCurrentWeather.displayData(data)
-        displayCurrentDate.displayDate(data)
-        displayLocation.display(data);
-        displayForecastDates.displayData(data);
-        displayForecastWeather.displayData(data);
-    })
 
     // current
 
@@ -83,12 +52,12 @@ const displayCurrentWeather = ((data) => {
 
     const displayTemperature = (data) => {
         const temperature = data.current.temp_c;
-        temperatureElement.textContent = temperature;
+        temperatureElement.textContent = `${temperature}°C`;
     }
 
     const displayFeelsLikeTemp = (data) => {
         const feelsLikeTemp = data.current.feelslike_c;
-        feelsLikeTempElement.textContent = `Feels like : ${feelsLikeTemp}`;
+        feelsLikeTempElement.textContent = `Feels like : ${feelsLikeTemp} °C`;
     }
 
     const displayDescription = (data) => {
@@ -193,8 +162,9 @@ const displayForecastWeather = ((data) => {
 
     const displayTemps = (data) => {
         for (let i=0; i<tempElements.length; i++) {
-            let temp = data.forecast.forecastday[i].day.maxtemp_c;
-            tempElements[i].textContent = temp;
+            let minTemp = data.forecast.forecastday[i].day.mintemp_c;
+            let maxTemp = data.forecast.forecastday[i].day.maxtemp_c;
+            tempElements[i].textContent = `${minTemp}°C | ${maxTemp}°C`;
         }
     }
 
@@ -214,7 +184,33 @@ const displayForecastWeather = ((data) => {
     return { displayData }
 })()
 
+function displayAllData(data) {
+    displayCurrentWeather.displayData(data)
+    displayCurrentDate.displayDate(data)
+    displayLocation.display(data);
+    displayForecastDates.displayData(data);
+    displayForecastWeather.displayData(data);
+}
 
-/* 
-date = new Date(2023-01-24);
-const datef = new Intl.DateTimeFormat('en-GB',{ month: "long", day: "numeric", year: "numeric",weekday: "long" }).format(date) */
+// on page load
+
+getWeather(city)
+    .catch((err) => console.log(err))
+    .then(data => displayAllData(data))
+
+submitCityBtn.addEventListener('click', () => {
+    if (isSearchCityInputValid) {
+        city = searchCityInput.value;
+        getWeather(city)
+            .then(data => displayAllData(data))
+            .then(() => {
+                resetCityInput();
+            })
+            .catch((err) => {
+                shakeInput();
+                console.log(err)
+            })
+    } else {
+        shakeInput();
+    }
+})
