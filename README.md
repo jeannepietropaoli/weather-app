@@ -17,12 +17,12 @@ The goal of this project is to create a weather forecast site using a weather AP
 
 ## Features
 
-- getting weather data about a location (temperature, feels-like temperature sky description and icon)
+- getting weather data about a location (temperature, feels-like temperature, sky description and icon)
 - getting info about the location (local time, country and region)
 - switch location
 - switch units (Celsius or Fahrenheit)
 - 3-day forecast
-- day or night switching background theme based onn the time of the day at the location
+- day or night switching background theme based on the time of the day at the location
 
 ## Features to come
 
