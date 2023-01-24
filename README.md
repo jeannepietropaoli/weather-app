@@ -15,7 +15,7 @@ The goal of this project is to create a weather forecast site using a weather AP
 - fetching data from an API, exploit and render it
 - using asynchronous code (promises and async/await)
 
-## Functionalities 
+## Features
 
 - getting weather data about a location (temperature, feels-like temperature sky description and icon)
 - getting info about the location (local time, country and region)
@@ -24,7 +24,7 @@ The goal of this project is to create a weather forecast site using a weather AP
 - 3-day forecast
 - day or night switching background theme based onn the time of the day at the location
 
-## Futur improements
+## Features to come
 
 - add an 'automatic localization' of the user
 - add other weather data (wind, humidity, chance of rain)
