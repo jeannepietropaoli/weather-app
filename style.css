@@ -12,6 +12,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 
@@ -56,6 +57,16 @@ body {
     margin: 0;
 }
 
+#time {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#time > * {
+    margin: 0;
+}
+
 /* search city input */
 
 #searchCityInput {
@@ -63,10 +74,17 @@ body {
     background: none;
     border: none;
     color: black;
+    padding: 3px;
+    cursor: pointer;
 }
 
 #searchCityInput::placeholder {
     color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#searchCityInput:hover::placeholder {
+    color: #bd512b;
 }
 
 #searchCityInput:focus {
@@ -132,6 +150,13 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 18px;
+    padding: 15px;
+    cursor: pointer;
+}
+
+#forecastContainer > *:hover {
+    background-color: rgba(250, 250, 250, 0.3);
+    transform: scale(1.09);
 }
 
 .day > .date {
@@ -145,7 +170,7 @@ body {
 }
 
 .day {
-    text-align: center;
+    text-align: 4enter;
 }
 
 
@@ -167,9 +192,32 @@ header > *,
     margin: 0;
 }
 
+#appName {
+    margin: 0;
+   align-self: flex-end;
+   font-weight: 300;
+}
+
+#websiteLogo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#logo {
+    height: 40px;
+}
+
 #githubLogo {
     border-radius: 50%;
     height: 40px;
+    transition: 0.5s;
+}
+
+#githubLogo:hover{
+    transform: rotate(-360deg);
+    bottom: 19px;
+    content: url('./img/iconGitOrange.jpg');
 }
 
 #githubLogo,
@@ -180,6 +228,12 @@ header > *,
 
 #switchUnits {
     display: flex;
+}
+
+#unitF:hover,
+#unitC:hover {
+    font-size: 1.4em;
+    color: #bd512b;
 }
 
 /* location */
@@ -210,4 +264,31 @@ header > *,
 
 #locationInfos > * {
     margin: 0;
+}
+
+#switchUnitsText {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    padding-left: 15px;
+}
+
+#unitsBox {
+    display: flex;
+    justify-content: center;
+}
+
+#unitsBox > * {
+    margin: 0;
+}
+
+#switchUnitsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+#loadingGif {
+    height: 5em;
+    visibility: hidden;
 }

@@ -82,7 +82,9 @@ const displayCurrentWeather = ((data) => {
 })()
 
 const displayCurrentDate = ((data) => {
-    const currentDateElement = document.querySelector('#currentWeatherInfos > .date');
+    const currentDateElement = document.querySelector('#time > .date');
+    const currentTimeElement = document.querySelector('#time > .hour');
+    
 
     const displayDate = (data) => {
         const date = new Date(data.location.localtime);
@@ -90,7 +92,18 @@ const displayCurrentDate = ((data) => {
         currentDateElement.textContent = formatedDate;
     }
 
-    return { displayDate }
+    const displayHour = (data) => {
+        const date = new Date(data.location.localtime);
+        const hour = date.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'});
+        currentTimeElement.textContent = hour;
+    }
+
+    const displayTime = (data) => {
+        displayDate(data);
+        displayHour(data);
+    }
+
+    return { displayTime }
 })()
 
 
@@ -199,7 +212,7 @@ const displayForecastWeather = ((data) => {
 
 function displayAllData(data) {
     displayCurrentWeather.displayData(data)
-    displayCurrentDate.displayDate(data)
+    displayCurrentDate.displayTime(data)
     displayLocation.display(data);
     displayForecastDates.displayData(data);
     displayForecastWeather.displayData(data);
@@ -226,8 +239,13 @@ getWeather(city)
 
 submitCityBtn.addEventListener('click', () => {
     if (isSearchCityInputValid) {
+        loadingGif.style.visibility = 'visible';
         city = searchCityInput.value;
         getWeather(city)
+            .then((data) => {
+                loadingGif.style.visibility = 'hidden';
+                return data
+            })
             .then(data => displayAllData(data))
             .then(() => {
                 resetCityInput();

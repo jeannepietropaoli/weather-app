@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title>WEATHERi</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="index_aasync_await.js"></script>
+    <link rel="shortcut icon" href="./img/favicon.png" />
 </head>
 <body>
     <header>
-        <h3 id="appName">Weatheri</h3>
-        <div id="switchUnits">
-            <h3 id="unitF">°F</h3>
-            <h3>|</h3>
-            <h3 id="unitC">°C</h3>
+        <div id="websiteLogo">
+            <img src="./img/tent.png" id="logo" alt="">
+            <h3 id="appName">WHEATERi</h3>
         </div>
         <a href="https://github.com/jeannepietropaoli/weather-app"><img src="./img/iconGit.jpg" id="githubLogo" alt=""></a>
     </header>
@@ -23,11 +22,23 @@
         <div id="currentWeatherContainer">
             <img id="currentWeatherIcon" src="./img/day/116.png" alt="">
             <div id="currentWeatherInfos">
-                <h4 class="date">Friday 27 october 1:33PM</h4>
+                <div id="time">
+                    <h4 class="date">Friday 27 october 1:33PM</h4>
+                    <h5 class="hour">13:05PM</h5>
+                </div>
                 <h1 class="temperature">20°c</h1>
                 <h4 class="feels-like">Feels like : 18°c</h4>
                 <h1 class="description">Cloudy</h1>
             </div>
+        </div>
+        <div id="switchUnitsContainer">
+            <p id="switchUnitsText">SWITCH UNITS</p>
+            <div id="unitsBox">
+                <h3 id="unitF">°F</h3>
+                <h3>|</h3>
+                <h3 id="unitC">°C</h3>
+            </div>
+            <img src="./img/loading.gif" id="loadingGif" alt="">
         </div>
         <div id="location">
             <div id="currentLocation">
