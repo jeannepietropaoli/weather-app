@@ -7,7 +7,7 @@ const unitFBtn = document.querySelector('#unitF');
 const unitCBtn = document.querySelector('#unitC');
 
 async function getWeather(city) {
-        const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=b47fa22050904e7e89122000232301&q=${city}&days=3&aqi=no&alerts=no`, {mode : "cors"});
+        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b47fa22050904e7e89122000232301&q=${city}&days=3&aqi=no&alerts=no`, {mode : "cors"});
         if (!response.ok) {
             throw new Error('no city found')
         } else {
