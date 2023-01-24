@@ -1,5 +1,9 @@
 # weather-app
 
+## Live version
+
+https://jeannepietropaoli.github.io/weather-app/
+
 ## Description
 
 Project inside the Odin Project JavaScript course.
