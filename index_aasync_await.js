@@ -4,6 +4,11 @@ const searchCityInput = document.querySelector('#searchCityInput');
 const submitCityBtn = document.querySelector('#submitCityBtn');
 const defaultCity = 'Paris';
 let city = defaultCity;
+const defaultUnit = 'f';
+let unit = defaultUnit;
+let unitString = `°${unit.toLocaleUpperCase()}`
+const unitFBtn = document.querySelector('#unitF');
+const unitCBtn = document.querySelector('#unitC');
 
 function isSearchCityInputValid() {
     return searchCityInput.value !== '';
@@ -51,13 +56,14 @@ const displayCurrentWeather = ((data) => {
     }
 
     const displayTemperature = (data) => {
-        const temperature = data.current.temp_c;
-        temperatureElement.textContent = `${temperature}°C`;
+        let temperature;
+        unit === 'c' ? temperature = data.current.temp_c : temperature = data.current.temp_f;
+        temperatureElement.textContent = `${temperature} ${unitString}`;
     }
 
     const displayFeelsLikeTemp = (data) => {
         const feelsLikeTemp = data.current.feelslike_c;
-        feelsLikeTempElement.textContent = `Feels like : ${feelsLikeTemp} °C`;
+        feelsLikeTempElement.textContent = `Feels like : ${feelsLikeTemp} ${unitString}`;
     }
 
     const displayDescription = (data) => {
@@ -162,9 +168,16 @@ const displayForecastWeather = ((data) => {
 
     const displayTemps = (data) => {
         for (let i=0; i<tempElements.length; i++) {
-            let minTemp = data.forecast.forecastday[i].day.mintemp_c;
-            let maxTemp = data.forecast.forecastday[i].day.maxtemp_c;
-            tempElements[i].textContent = `${minTemp}°C | ${maxTemp}°C`;
+            let minTemp;
+            let maxTemp;
+            if (unit === 'c') {
+                minTemp = data.forecast.forecastday[i].day.mintemp_c;
+                maxTemp = data.forecast.forecastday[i].day.maxtemp_c;
+            } else {
+                minTemp = data.forecast.forecastday[i].day.mintemp_f;
+                maxTemp = data.forecast.forecastday[i].day.maxtemp_f;
+            }
+            tempElements[i].textContent = `${minTemp}${unitString} | ${maxTemp}${unitString}`;
         }
     }
 
@@ -191,7 +204,6 @@ function displayAllData(data) {
     displayForecastDates.displayData(data);
     displayForecastWeather.displayData(data);
     displayBackground(data)
-    console.log(data)
 }
 
 
@@ -229,3 +241,22 @@ submitCityBtn.addEventListener('click', () => {
     }
 })
 
+unitCBtn.addEventListener('click', () => {
+    if (unit !== 'c') {
+        unit = 'c';
+        unitString = `°${unit.toLocaleUpperCase()}`
+        getWeather(city)
+            .catch((err) => console.log(err))
+            .then(data => displayAllData(data))
+    }
+})
+
+unitFBtn.addEventListener('click', () => {
+    if (unit !== 'f') {
+        unit = 'f';
+        unitString = `°${unit.toLocaleUpperCase()}`;
+        getWeather(city)
+            .catch((err) => console.log(err))
+            .then(data => displayAllData(data))
+    }
+})
