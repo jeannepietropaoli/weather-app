@@ -190,13 +190,27 @@ function displayAllData(data) {
     displayLocation.display(data);
     displayForecastDates.displayData(data);
     displayForecastWeather.displayData(data);
+    displayBackground(data)
+    console.log(data)
 }
 
+
+function displayBackground(data) {
+    if (data.current.is_day) {
+        document.querySelector('body').style.backgroundImage = "url('./img/hot.svg')"
+    } else {
+        document.querySelector('body').style.backgroundImage = "url('./img/cold.svg')"
+    }
+}
 // on page load
 
 getWeather(city)
     .catch((err) => console.log(err))
-    .then(data => displayAllData(data))
+    .then(data => {
+        displayAllData(data);
+        return data;
+    })
+    .then(data => console.log(data)) 
 
 submitCityBtn.addEventListener('click', () => {
     if (isSearchCityInputValid) {
@@ -214,3 +228,4 @@ submitCityBtn.addEventListener('click', () => {
         shakeInput();
     }
 })
+
