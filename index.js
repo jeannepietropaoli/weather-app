@@ -1,5 +1,7 @@
 const defaultCity = 'Paris';
-const defaultUnit = 'c';
+const celsiusUnit = 'c';
+const fahrenheitUnit = 'f';
+const defaultUnit = celsiusUnit;
 const unitFBtn = document.querySelector('#unitF');
 const unitCBtn = document.querySelector('#unitC');
 let city = defaultCity;
@@ -16,10 +18,12 @@ async function getWeather(city) {
         }
 }
 
+// Modules 
+
 // icons
 
 const manageWeatherIcons = (() => {
-    isolateIconUrl = (url) => {
+    isolateIconUrl = url => {
         const regex = /((day|night)\/\d{3}.png)$/;
         const source = url.match(regex)[0];
         return source;
@@ -34,29 +38,29 @@ const manageWeatherIcons = (() => {
 
 // current weather
 
-const displayCurrentWeather = ((data) => {
+const displayCurrentWeather = (data => {
     const currentWeatherIcon = document.querySelector('#currentWeatherIcon');
     const temperatureElement = document.querySelector('#currentWeatherInfos > .temperature');
     const feelsLikeTempElement = document.querySelector('#currentWeatherInfos > .feels-like');
     const descriptionElement = document.querySelector('#currentWeatherInfos > .description');
 
-    const displayTemperature = (data) => {
+    const displayTemperature = data => {
         let temperature;
         unit === 'c' ? temperature = data.current.temp_c : temperature = data.current.temp_f;
         temperatureElement.textContent = `${temperature} ${unitString}`;
     }
 
-    const displayFeelsLikeTemp = (data) => {
+    const displayFeelsLikeTemp = data => {
         const feelsLikeTemp = data.current.feelslike_c;
         feelsLikeTempElement.textContent = `Feels like : ${feelsLikeTemp} ${unitString}`;
     }
 
-    const displayDescription = (data) => {
+    const displayDescription = data => {
         const description = data.current.condition.text;
         descriptionElement.textContent = description;
     }
 
-    const displayData = (data) => {
+    const displayData = data => {
         manageWeatherIcons.display(data, currentWeatherIcon, data.current.condition.icon);
         displayTemperature(data);
         displayFeelsLikeTemp(data);
@@ -68,24 +72,24 @@ const displayCurrentWeather = ((data) => {
 
 // current time
 
-const displayCurrentDate = ((data) => {
+const displayCurrentDate = (data => {
     const currentDateElement = document.querySelector('#time > .date');
     const currentTimeElement = document.querySelector('#time > .hour');
     
 
-    const displayDate = (data) => {
+    const displayDate = data => {
         const date = new Date(data.location.localtime);
         const formatedDate = new Intl.DateTimeFormat('en-GB',{ month: "long", day: "numeric", year: "numeric",weekday: "long" }).format(date);
         currentDateElement.textContent = formatedDate;
     }
 
-    const displayHour = (data) => {
+    const displayHour = data => {
         const date = new Date(data.location.localtime);
         const hour = date.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'});
         currentTimeElement.textContent = hour;
     }
 
-    const displayTime = (data) => {
+    const displayTime = data => {
         displayDate(data);
         displayHour(data);
     }
@@ -117,27 +121,27 @@ const searchCityInput = (() => {
     }
 })()
 
-const displayLocation = ((data) => {
+const displayLocation = (data => {
     const cityElement = document.querySelector('#locationInfos > #city');
     const countryElement = document.querySelector('#locationInfos > #country');
     const regionElement = document.querySelector('#locationInfos > #region');
 
-    const displayCity = (data) => {
+    const displayCity = data => {
         const city = data.location.name;
         cityElement.textContent = city;
     }
 
-    const displayCountry = (data) => {
+    const displayCountry = data => {
         const country = data.location.country;
         countryElement.textContent = country;
     }
 
-    const displayRegion = (data) => {
+    const displayRegion = data => {
         const region = data.location.region;
         regionElement.textContent = region;
     }
 
-    const displayData = (data) => {
+    const displayData = data => {
         displayCity(data);
         displayCountry(data);
         displayRegion(data);
@@ -148,7 +152,7 @@ const displayLocation = ((data) => {
 
 // forecast
 
-const displayForecastDates = ((data) => {
+const displayForecastDates = (data => {
     const dayElements = document.querySelectorAll('.day > .dayOfTheWeek');
     const dateElements = document.querySelectorAll('.day > .date');
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday","Thursday", "Friday","Saturday"];
@@ -159,7 +163,7 @@ const displayForecastDates = ((data) => {
         return date;
     }
 
-    const displayDay = (data) => {
+    const displayDay = data => {
         for (let i=0; i<dayElements.length; i++) {
             const date = getDate(data, i);
             let day = days[date.getDay()];
@@ -167,7 +171,7 @@ const displayForecastDates = ((data) => {
         }
     }
 
-    const displayDate = (data) => {
+    const displayDate = data => {
         for (let i=0; i<dateElements.length; i++) {
             const date = getDate(data, i);
             const formatedDate = new Intl.DateTimeFormat('en-GB',{ month: "long", day: "numeric", year: "numeric" }).format(date);
@@ -175,7 +179,7 @@ const displayForecastDates = ((data) => {
         }
     }
 
-    const displayData = (data) => {
+    const displayData = data => {
         displayDay(data);
         displayDate(data)
     }
@@ -183,11 +187,11 @@ const displayForecastDates = ((data) => {
     return { displayData }
 })()
 
-const displayForecastWeather = ((data) => {
+const displayForecastWeather = (data => {
     const tempElements = document.querySelectorAll('.forecastTemperature');
     const icons = document.querySelectorAll('.forecastWeatherIcon');
 
-    const displayTemps = (data) => {
+    const displayTemps = data => {
         for (let i=0; i<tempElements.length; i++) {
             let minTemp;
             let maxTemp;
@@ -202,14 +206,14 @@ const displayForecastWeather = ((data) => {
         }
     }
 
-    const displayIcons = (data) => {
+    const displayIcons = data => {
         for (let i=0; i<icons.length; i++) {
             let source = data.forecast.forecastday[i].day.condition.icon;
             manageWeatherIcons.display(data, icons[i], source)
         }
     }
 
-    const displayData = (data) => {
+    const displayData = data => {
         displayTemps(data);
         displayIcons(data);
     }
@@ -247,20 +251,23 @@ function endDisplayLoading() {
 // on page load
 
 getWeather(city)
-    .catch((err) => console.log(err))
+    .catch(err => console.log(err))
     .then(data => displayAllData(data))
+
+
+// events handling
 
 searchCityInput.submitCityBtn.addEventListener('click', () => {
     if (searchCityInput.isValid()) {
         startDisplayLoading();
         city = searchCityInput.element.value;
         getWeather(city)
-            .then((data) => {
+            .then(data => {
                 displayAllData(data);
                 endDisplayLoading();
                 searchCityInput.resetValue()
             })
-            .catch((err) => {
+            .catch(err => {
                 searchCityInput.shake();
                 console.log(err);
                 endDisplayLoading();
@@ -271,21 +278,21 @@ searchCityInput.submitCityBtn.addEventListener('click', () => {
 })
 
 unitCBtn.addEventListener('click', () => {
-    if (unit !== 'c') {
-        unit = 'c';
+    if (unit !== celsiusUnit) {
+        unit = celsiusUnit;
         unitString = `°${unit.toLocaleUpperCase()}`
         getWeather(city)
-            .catch((err) => console.log(err))
+            .catch(err => console.log(err))
             .then(data => displayAllData(data))
     }
 })
 
 unitFBtn.addEventListener('click', () => {
-    if (unit !== 'f') {
-        unit = 'f';
+    if (unit !== fahrenheitUnit) {
+        unit = fahrenheitUnit;
         unitString = `°${unit.toLocaleUpperCase()}`;
         getWeather(city)
-            .catch((err) => console.log(err))
+            .catch(err => console.log(err))
             .then(data => displayAllData(data))
     }
 })
