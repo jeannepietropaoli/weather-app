@@ -14,6 +14,8 @@ To learn more about the specific Full Stack JavaScript Path : https://www.theodi
 
 The goal of this project is to create a weather forecast site using a weather API.
 
+The API used in this project to get weather and location data is 'weather api' : https://www.weatherapi.com/docs/
+
 ## Skills to practice
 
 - Fetching data from an API, exploit and render it
@@ -34,4 +36,6 @@ The goal of this project is to create a weather forecast site using a weather AP
 - Add other weather data (wind, humidity, chance of rain)
 - Hourly forecast
 - 5 or 7-day forecast
+- Add auto-completion for the search location bar
+- Upgrade for better quality weather logos (currently using the logos from weatherapi)
 
