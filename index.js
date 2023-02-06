@@ -1,10 +1,10 @@
 const defaultCity = 'Paris';
-let city = defaultCity;
 const defaultUnit = 'c';
-let unit = defaultUnit;
-let unitString = `°${unit.toLocaleUpperCase()}`
 const unitFBtn = document.querySelector('#unitF');
 const unitCBtn = document.querySelector('#unitC');
+let city = defaultCity;
+let unit = defaultUnit;
+let unitString = `°${unit.toLocaleUpperCase()}`;
 
 async function getWeather(city) {
         const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b47fa22050904e7e89122000232301&q=${city}&days=3&aqi=no&alerts=no`, {mode : "cors"});
