@@ -10,7 +10,7 @@ Project inside the Odin Project's Full Stack JavaScript course.
 
 To learn more about The Odin Project : https://www.theodinproject.com/
 
-To learn more about the specific Full Stack JavaScript Path : https://www.theodinproject.com/paths/full-stack-javascript
+To learn more about the specific project : https://www.theodinproject.com/lessons/node-path-javascript-weather-app
 
 The goal of this project is to create a weather forecast site using a weather API.
 
@@ -18,8 +18,9 @@ The API used in this project to get weather and location data is 'weather api' :
 
 ## Skills to practice
 
-- Fetching data from an API, exploit and render it
+- Fetching data from an API, exploit it and render it
 - Using asynchronous code (promises and async/await)
+- Clean code (organizing code into factories, no magic numbers, minimise nested conditions, good naming...)
 
 ## Features
 
